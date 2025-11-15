@@ -1,7 +1,7 @@
 import states
 
 def begin():
-    print("\n--- WATERVAL ---")
+    print("--- WATERVAL ---")
     print(f"Gezondheid: {states.gezondheid}, Honger: {states.honger}, Dorst: {states.dorst}, Items: {states.voorwerpen}")
     print("Het water is helder en koel.")
     print("Typ 'DRINK', 'BERGTOP' of 'JUNGLE'.")
@@ -10,14 +10,19 @@ def begin():
 
     if antwoord == "DRINK":
         print("Je drinkt wat water. Dorst neemt af.")
-        states.dorst -= 2
+        states.dorst -= 3
         if states.dorst < 0:
             states.dorst = 0
-        states.locatie = "WATERVAL1"
+        states.honger +=3
+        states.locatie = "WATERVAL2"
     elif antwoord == "BERGTOP":
+        states.honger += 3
+        states.dorst += 3
         states.locatie = "BERGTOP1"
     elif antwoord == "JUNGLE":
+        states.honger += 3
+        states.dorst += 3
         states.locatie = "JUNGLE2"
 
-    if "WATERVALL1" not in states.bezochte_locaties:
+    if "WATERVAL1" not in states.bezochte_locaties:
         states.bezochte_locaties.append("WATERVAL1")
