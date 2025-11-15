@@ -1,7 +1,7 @@
 import states
 
 def begin():
-    print("\n--- BERGTOP ---")
+    print("--- BERGTOP ---")
     print(f"Gezondheid: {states.gezondheid}, Honger: {states.honger}, Dorst: {states.dorst}, Items: {states.voorwerpen}")
 
     verplicht = ["STRAND", "JUNGLE1", 
@@ -21,6 +21,8 @@ def begin():
         states.locatie = "GERED"
     else:
         print("Je hebt niet genoeg materialen of kiest te wachten. Morgen probeer je het opnieuw.")
+        states.honger += 3
+        states.dorst += 3
         states.locatie = "BERGTOP2"
 
     if "BERGTOP1" not in states.bezochte_locaties:

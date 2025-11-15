@@ -15,20 +15,57 @@ import bergtop2
 while True:
     
     if states.locatie == "GERED":
-        print("\n🎉 Je bent gered! Goed gedaan!")
+        print("🎉 Je bent gered! Goed gedaan!")
         break
     if states.locatie == "GAMEOVER":
-        print("\n💀 Je hebt het spel opgegeven. Game over.")
+        print("💀 Je hebt het spel opgegeven. Game over.")
         break
     if states.gezondheid <= 0:
-        print("\n💀 Je bent te zwak geworden... Game over.")
+        print("💀 Je bent te zwak geworden... Game over.")
         break
+    if states.honger <= 0 :
+        states.honger = 0
+    if states.dorst <= 0 :
+        states.dorst = 0
 
+    if states.honger >= 5:
+        if not states.honger_schade_actief:
+            states.gezondheid -= 5
+            states.honger_schade_actief = True
+            print("Je voelt je zwakker door honger. Gezondheid daalt!")
+    else:
+        states.honger_schade_actief = False
 
-    if states.honger > 5 or states.dorst > 5:
+    if states.dorst >= 5:
+        if not states.dorst_schade_actief:
+            states.gezondheid -= 5
+            states.dorst_schade_actief = True
+            print("Je voelt je zwakker door dorst. Gezondheid daalt!")
+    else:
+        states.dorst_schade_actief = False
+    
+    honger_level = states.honger // 5 
+
+    if honger_level > states.laatste_honger_schade:
         states.gezondheid -= 5
-        print("\nJe voelt je zwakker door honger of dorst. Gezondheid daalt!")
+        print("Je krijgt schade door honger!")
+        states.laatste_honger_schade = honger_level
 
+    elif honger_level < states.laatste_honger_schade:
+        states.laatste_honger_schade = honger_level
+
+
+    dorst_level = states.dorst // 5  
+
+    if dorst_level > states.laatste_dorst_schade:
+        states.gezondheid -= 5
+        print("Je krijgt schade door dorst!")
+        states.laatste_dorst_schade = dorst_level
+
+    elif dorst_level < states.laatste_dorst_schade:
+        states.laatste_dorst_schade = dorst_level
+
+  
 
     if states.locatie == "STRAND":
         strand.begin()
@@ -54,3 +91,4 @@ while True:
         bergtop.begin()
     elif states.locatie == "BERGTOP2":
         bergtop2.begin()
+    

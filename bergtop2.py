@@ -1,7 +1,7 @@
 import states
 
 def begin():
-    print("\n--- BERGTOP (fase 2) ---")
+    print("--- BERGTOP (fase 2) ---")
     print(f"Gezondheid: {states.gezondheid}, Honger: {states.honger}, Dorst: {states.dorst}, Items: {states.voorwerpen}")
     print("Je krijgt nog een kans om een groot vuur te maken.")
     print("Typ 'VUUR' om het vuur te maken of 'WACHT' om het de volgende dag te proberen.")
@@ -14,9 +14,13 @@ def begin():
             states.locatie = "GERED"
         else:
             print("Je hebt niet genoeg spullen. Je moet terug naar het strand om nieuwe materialen te zoeken.")
+            states.honger += 3
+            states.dorst += 3
             states.locatie = "STRAND"
     elif antwoord == "WACHT":
         print("Je hebt nog steeds niet genoeg spullen. Je moet terug naar het strand om nieuwe materialen te zoeken.")
+        states.honger += 3
+        states.dorst += 3
         states.locatie = "STRAND"
 
     if "BERGTOP2" not in states.bezochte_locaties:

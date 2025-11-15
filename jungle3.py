@@ -1,7 +1,7 @@
 import states
 
 def begin():
-    print("\n--- JUNGLE (fase 3) ---")
+    print("--- JUNGLE (fase 3) ---")
     print(f"Gezondheid: {states.gezondheid}, Honger: {states.honger}, Dorst: {states.dorst}, Items: {states.voorwerpen}, Kennis: {states.kennis}")
     print("Diep in de jungle zie je een oude sjamaan bij een kampvuur.")
     print("Je kunt met hem praten of teruggaan.")
@@ -13,9 +13,13 @@ def begin():
         print("De sjamaan leert je over de geheimen van het eiland. Je weet nu hoe je de grot binnen moet komen!")
         if "grot" not in states.kennis:
             states.kennis.append("grot")
+        states.honger += 3
+        states.dorst += 3
         states.locatie = "GROT1"
     elif antwoord == "TERUG":
         print("Je gaat terug naar Jungle2.")
+        states.honger += 3
+        states.dorst += 3
         states.locatie = "JUNGLE2"
 
     if "JUNGLE3" not in states.bezochte_locaties:
